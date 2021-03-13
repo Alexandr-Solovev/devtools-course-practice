@@ -15,7 +15,7 @@ TEST(Solovev_Aleksandr_ComplexNumberTest, Test_NoEqual) {
     ComplexNumber c2(11.2, 17.1);
     ComplexNumber c3(c2);
 
-    EXPECT_NE(c1, c2);
+    EXPECT_NE(c1, c3);
 }
 
 TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Multiply) {
