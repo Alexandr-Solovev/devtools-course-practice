@@ -20,13 +20,13 @@ TEST(Solovev_Aleksandr_ComplexNumberTest, Test_NoEqual) {
 TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Multiply) {
     ComplexNumber c1(2.5, 3.0);
     ComplexNumber c2(7.5, 1.0);
-    ComplexNumber result = c1;
-    result = result * c2;
+    ComplexNumber result = c1 * c2;
 
-    EXPECT_EQ((c1.getRe() * c2.getRe()) - (c1.getIm() * c2.getIm()),
-              result.getRe());
-    EXPECT_EQ((c1.getRe() * c2.getIm()) + (c1.getIm() * c2.getRe()),
-              result.getIm());
+    double resultRe = (c1.getRe() * c2.getRe()) - (c1.getIm() * c2.getIm());
+    double resultIm = (c1.getRe() * c2.getIm()) + (c1.getIm() * c2.getRe());
+    
+    EXPECT_EQ(resultRe, result.getRe());
+    EXPECT_EQ(resultIm, result.getIm());
 }
 
 TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Add) {
