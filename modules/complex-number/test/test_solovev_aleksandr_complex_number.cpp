@@ -24,7 +24,6 @@ TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Multiply) {
 
     double resultRe = (c1.getRe() * c2.getRe()) - (c1.getIm() * c2.getIm());
     double resultIm = (c1.getRe() * c2.getIm()) + (c1.getIm() * c2.getRe());
-    
     EXPECT_EQ(resultRe, result.getRe());
     EXPECT_EQ(resultIm, result.getIm());
 }
