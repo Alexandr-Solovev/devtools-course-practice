@@ -12,7 +12,8 @@ TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Equal) {
 
 TEST(Solovev_Aleksandr_ComplexNumberTest, Test_NoEqual) {
     ComplexNumber c1(7.0, 10.0);
-    ComplexNumber c2(11.0, 2.0);
+    ComplexNumber c2(11.2, 17.1);
+    ComplexNumber c3(c2);
 
     EXPECT_NE(c1, c2);
 }
@@ -32,7 +33,8 @@ TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Add) {
     ComplexNumber c1(1.0, 2.0);
     ComplexNumber c2(3.0, 4.0);
     ComplexNumber result = c1 + c2;
-
-    EXPECT_EQ((c1.getRe() + c2.getRe()), result.getRe());
-    EXPECT_EQ((c1.getIm() + c2.getIm()), result.getIm());
+    double resultRe = c1.getRe() + c2.getRe();
+    double resultIm = c1.getIm() + c2.getIm();
+    EXPECT_EQ(resultRe, result.getRe());
+    EXPECT_EQ(resultIm, result.getIm());
 }
