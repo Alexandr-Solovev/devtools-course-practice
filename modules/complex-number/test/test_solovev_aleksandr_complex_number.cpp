@@ -23,8 +23,10 @@ TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Multiply) {
     ComplexNumber result = c1;
     result = result * c2;
 
-    EXPECT_EQ((c1.getRe() * c2.getRe()) - (c1.getIm() * c2.getIm()), result.getRe());
-    EXPECT_EQ((c1.getRe() * c2.getIm()) + (c1.getIm() * c2.getRe()), result.getIm());
+    EXPECT_EQ((c1.getRe() * c2.getRe()) - (c1.getIm() * c2.getIm()),
+              result.getRe());
+    EXPECT_EQ((c1.getRe() * c2.getIm()) + (c1.getIm() * c2.getRe()),
+              result.getIm());
 }
 
 TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Add) {
