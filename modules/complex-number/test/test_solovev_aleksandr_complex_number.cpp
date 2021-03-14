@@ -19,7 +19,7 @@ TEST(Solovev_Aleksandr_ComplexNumberTest, Test_NoEqual) {
     EXPECT_NE(c1, c3);
 }
 
-typedef testing::TestWithParam<std::tuple<double, double, double, double>> 
+typedef testing::TestWithParam<std::tuple<double, double, double, double>>
         Solovev_Aleksandr_ComplexNumberTest_Parametrized;
 TEST_P(Solovev_Aleksandr_ComplexNumberTest_Parametrized, Test_Multiply) {
     double re1 = std::get<0>(GetParam());
@@ -63,7 +63,8 @@ TEST_P(Solovev_Aleksandr_ComplexNumberTest_Add_Parametrized, Test_Add) {
     EXPECT_EQ(resultIm, result.getIm());
 }
 
-INSTANTIATE_TEST_CASE_P(/**/, Solovev_Aleksandr_ComplexNumberTest_Add_Parametrized,
+INSTANTIATE_TEST_CASE_P(/**/,
+                        Solovev_Aleksandr_ComplexNumberTest_Add_Parametrized,
                         testing::Combine(
   testing::Values(10.0, 3.0, 13.0, 3.0),
   testing::Values(0.0, 4.0, 0.0, 1.0),
