@@ -2,6 +2,7 @@
 
 #include <gtest/gtest.h>
 
+#include <tuple>
 #include "include/complex_number.h"
 
 TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Equal) {
@@ -18,23 +19,51 @@ TEST(Solovev_Aleksandr_ComplexNumberTest, Test_NoEqual) {
     EXPECT_NE(c1, c3);
 }
 
-TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Multiply) {
-    ComplexNumber c1(2.5, 3.0);
-    ComplexNumber c2(7.5, 1.0);
+typedef testing::TestWithParam<std::tuple<double, double, double, double>> Solovev_Aleksandr_ComplexNumberTest_Parametrized;
+TEST_P(Solovev_Aleksandr_ComplexNumberTest_Parametrized, Test_Multiply) {
+    double re1 = std::get<0>(GetParam());
+    double im1 = std::get<1>(GetParam());
+    double re2 = std::get<2>(GetParam());
+    double im2 = std::get<3>(GetParam());
+    double resultRe = (re1 * re2) - (im1 * im2);
+    double resultIm = (re1 * im2) + (im1 * re2);
+
+    ComplexNumber c1(re1, im1);
+    ComplexNumber c2(re2, im2);
     ComplexNumber result = c1 * c2;
 
-    double resultRe = (c1.getRe() * c2.getRe()) - (c1.getIm() * c2.getIm());
-    double resultIm = (c1.getRe() * c2.getIm()) + (c1.getIm() * c2.getRe());
+    EXPECT_EQ(resultRe, result.getRe());
+    EXPECT_EQ(resultIm, result.getIm());
+};
+
+INSTANTIATE_TEST_CASE_P(/**/, Solovev_Aleksandr_ComplexNumberTest_Parametrized, testing::Combine(
+  testing::Values(10.0, 3.0, 13.0, 3.0),
+  testing::Values(0.0, 4.0, 0.0, 1.0),
+  testing::Values(2.0, 0.0, 13.5, 0.0),
+  testing::Values(0.0, 0.0, 0.0, 0.0)
+));
+
+typedef testing::TestWithParam<std::tuple<double, double, double, double>>
+        Solovev_Aleksandr_ComplexNumberTest_Add_Parametrized;
+TEST_P(Solovev_Aleksandr_ComplexNumberTest_Add_Parametrized, Test_Add) {
+    double re1 = std::get<0>(GetParam());
+    double im1 = std::get<1>(GetParam());
+    double re2 = std::get<2>(GetParam());
+    double im2 = std::get<3>(GetParam());
+    double resultRe = re1 + re2;
+    double resultIm = im1 + im2;
+
+    ComplexNumber c1(re1, im1);
+    ComplexNumber c2(re2, im2);
+    ComplexNumber result = c1 + c2;
+
     EXPECT_EQ(resultRe, result.getRe());
     EXPECT_EQ(resultIm, result.getIm());
 }
 
-TEST(Solovev_Aleksandr_ComplexNumberTest, Test_Add) {
-    ComplexNumber c1(1.0, 2.0);
-    ComplexNumber c2(3.0, 4.0);
-    ComplexNumber result = c1 + c2;
-    double resultRe = c1.getRe() + c2.getRe();
-    double resultIm = c1.getIm() + c2.getIm();
-    EXPECT_EQ(resultRe, result.getRe());
-    EXPECT_EQ(resultIm, result.getIm());
-}
+INSTANTIATE_TEST_CASE_P(/**/, Solovev_Aleksandr_ComplexNumberTest_Add_Parametrized, testing::Combine(
+  testing::Values(10.0, 3.0, 13.0, 3.0),
+  testing::Values(0.0, 4.0, 0.0, 1.0),
+  testing::Values(2.0, 0.0, 13.5, 0.0),
+  testing::Values(0.0, 0.0, 0.0, 0.0)
+));
