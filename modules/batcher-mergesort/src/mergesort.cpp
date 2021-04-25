@@ -19,19 +19,16 @@ std::vector<double> MergeSort::createRandomVector(int vec_size) {
     return res_vec;
 }
 
-void MergeSort::compexch(double a, double b)
-{
+void MergeSort::compexch(double a, double b) {
     if (b < a)
         std::swap(a, b);
 }
 
-void MergeSort::shuffle(std::vector<double> *a, int l, int r)
-{
+void MergeSort::shuffle(std::vector<double> *a, int l, int r) {
     auto half = (unsigned int) (l + r) / 2;
     std::vector<double> tmp(a->size());
     int i, j;
-    for (i = l, j = 0; i <= r; i += 2, j++)
-    {
+    for (i = l, j = 0; i <= r; i += 2, j++) {
         tmp[i] = a->at(l + j);
         tmp[i + 1] = a->at(half + j + 1);
     }
@@ -39,13 +36,11 @@ void MergeSort::shuffle(std::vector<double> *a, int l, int r)
        a->at(i) = tmp[i];
 }
 
-void MergeSort::unshuffle(std::vector<double> *a, int l, int r)
-{
+void MergeSort::unshuffle(std::vector<double> *a, int l, int r) {
     auto half = (unsigned int) (l + r) / 2;
     std::vector<double> tmp(a->size());
     int i, j;
-    for (i = l, j =0; i<=r; i += 2, j++)
-    {
+    for (i = l, j =0; i <= r; i += 2, j++) {
         tmp[l + j] = a->at(i);
         tmp[half + j + 1] = a->at(i + 1);
     }
@@ -53,8 +48,7 @@ void MergeSort::unshuffle(std::vector<double> *a, int l, int r)
         a->at(i)  = tmp[i];
 }
 
-void MergeSort::LocalSort(std::vector<double> *a, int l, int r)
-{
+void MergeSort::LocalSort(std::vector<double> *a, int l, int r) {
     std::vector<double> tmp(r - l);
     int count = r - l;
     for (auto i = 0; i < count; i++)
@@ -64,12 +58,9 @@ void MergeSort::LocalSort(std::vector<double> *a, int l, int r)
         a->at(l+i) = tmp[i];
 }
 
-void MergeSort::OddEvenMergeSort(std::vector<double> *a, int l, int r)
-{   
-    if (r == l + 1) 
-    {   
-        if( a->at(l)> a->at(r))
-        {
+void MergeSort::OddEvenMergeSort(std::vector<double> *a, int l, int r) {
+    if (r == l + 1)  {   
+        if( a->at(l)> a->at(r)) {
             std::swap(a->at(l), a->at(r));
         }
         return;
