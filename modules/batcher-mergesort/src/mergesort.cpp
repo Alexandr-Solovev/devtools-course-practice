@@ -59,19 +59,19 @@ void MergeSort::LocalSort(std::vector<double> *a, int l, int r) {
 }
 
 void MergeSort::OddEvenMergeSort(std::vector<double> *a, int l, int r) {
-    if (r == l + 1)  {   
-        if( a->at(l)> a->at(r)) {
+    if (r == l + 1)  {
+        if (a->at(l) > a->at(r)) {
             std::swap(a->at(l), a->at(r));
         }
         return;
     }
-    if (r < l + 2) return; 
+    if (r < l + 2) return;
     unshuffle(a, l, r);
-    auto half = (int) (l + r) / 2;
+    auto half = static_cast<int>(l + r) / 2;
     OddEvenMergeSort(a, l, half);
     LocalSort(a, l, r);
     OddEvenMergeSort(a, half + 1, r);
     LocalSort(a, l, r);
-    shuffle(a, l, r); 
-    LocalSort(a, l, r);     
+    shuffle(a, l, r);
+    LocalSort(a, l, r);
 }
