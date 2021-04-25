@@ -1,0 +1,48 @@
+// Copyright 2021 Solovev Alexandr
+#include <gtest/gtest.h>
+
+#include <algorithm>
+#include <vector>
+
+#include "include/mergesort.h"
+
+TEST(BatcherSort_Test, Test_Creating_Vector_Exception) {
+    ASSERT_ANY_THROW(MergeSort::createRandomVector(-1));
+}
+
+TEST(BatcherSort_Test, Test_Creating_Odd_Vector_Exception) {
+    ASSERT_ANY_THROW(MergeSort::createRandomVector(11));
+}
+
+TEST(BatcherSort_Test, Test_Correct_Creating_Vector) {
+    int n = 10;
+    std::vector<double> vec(n);
+    ASSERT_NO_THROW(vec = MergeSort::createRandomVector(n));
+}
+
+TEST(BatcherSort_Test, Test_Correct_Sorting_Small_Vector) {
+    int n = 16;
+    std::vector<double> vec = MergeSort::createRandomVector(n);
+    std::vector<double> vec_copy = vec;
+    MergeSort::OddEvenMergeSort(&vec, 0, n - 1);
+    std::sort(vec_copy.begin(), vec_copy.end());
+    ASSERT_EQ(vec_copy, vec);
+}
+
+TEST(BatcherSort_Test, Test_Correct_Sorting_Medium_Vector) {
+    int n = 256;
+    std::vector<double> vec = MergeSort::createRandomVector(n);
+    std::vector<double> vec_copy = vec;
+    MergeSort::OddEvenMergeSort(&vec, 0, n - 1);
+    std::sort(vec_copy.begin(), vec_copy.end());
+    ASSERT_EQ(vec_copy, vec);
+}
+
+TEST(BatcherSort_Test, Test_Correct_Sorting_Large_Vector) {
+    int n = 512;
+    std::vector<double> vec = MergeSort::createRandomVector(n);
+    std::vector<double> vec_copy = vec;
+    MergeSort::OddEvenMergeSort(&vec, 0, n - 1);
+    std::sort(vec_copy.begin(), vec_copy.end());
+    ASSERT_EQ(vec_copy, vec);
+}
