@@ -7,7 +7,6 @@
 
 namespace MergeSort {
     std::vector<double> createRandomVector(int vec_size);
-    void compexch(double a, double b);
     void shuffle(std::vector<double> *a, int l, int r);
     void unshuffle(std::vector<double> *a, int l, int r);
     void LocalSort(std::vector<double> *a, int l, int r);

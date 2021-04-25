@@ -19,11 +19,6 @@ std::vector<double> MergeSort::createRandomVector(int vec_size) {
     return res_vec;
 }
 
-void MergeSort::compexch(double a, double b) {
-    if (b < a)
-        std::swap(a, b);
-}
-
 void MergeSort::shuffle(std::vector<double> *a, int l, int r) {
     auto half = (unsigned int) (l + r) / 2;
     std::vector<double> tmp(a->size());
