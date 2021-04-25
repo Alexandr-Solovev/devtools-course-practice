@@ -38,9 +38,36 @@ TEST(BatcherSort_Test, Test_Correct_Sorting_Medium_Vector) {
     ASSERT_EQ(vec_copy, vec);
 }
 
-TEST(BatcherSort_Test, Test_Correct_Sorting_Large_Vector) {
-    int n = 512;
-    std::vector<double> vec = MergeSort::createRandomVector(n);
+TEST(BatcherSort_Test, Test_Correct_Sorting_Sorted_Vec) {
+    int n = 32;
+    std::vector<double> vec(n);
+    for (int i = 0; i < n; i++) {
+        vec[i] = i;
+    }
+    std::vector<double> vec_copy = vec;
+    MergeSort::OddEvenMergeSort(&vec, 0, n - 1);
+    std::sort(vec_copy.begin(), vec_copy.end());
+    ASSERT_EQ(vec_copy, vec);
+}
+
+TEST(BatcherSort_Test, Test_Sorting_Reverse_Sorted_Vec) {
+    int n = 128;
+    std::vector<double> vec(n);
+    for (int i = 0; i < n; i++) {
+        vec[i] = n - i;
+    }
+    std::vector<double> vec_copy = vec;
+    MergeSort::OddEvenMergeSort(&vec, 0, n - 1);
+    std::sort(vec_copy.begin(), vec_copy.end());
+    ASSERT_EQ(vec_copy, vec);
+}
+
+TEST(BatcherSort_Test, Test_Correct_Sorting_Equal_Elements) {
+    int n = 64;
+    std::vector<double> vec(n);
+    for (int i = 0; i < n; i++) {
+        vec[i] = 1;
+    }
     std::vector<double> vec_copy = vec;
     MergeSort::OddEvenMergeSort(&vec, 0, n - 1);
     std::sort(vec_copy.begin(), vec_copy.end());

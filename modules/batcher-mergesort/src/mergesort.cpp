@@ -5,10 +5,11 @@
 #include <algorithm>
 #include <random>
 #include <vector>
-#include <iostream>
+#include <stdexcept>
+
 std::vector<double> MergeSort::createRandomVector(int vec_size) {
-    if (vec_size <= 0) throw "Vector's size must be > 0.";
-    if (vec_size %2 != 0) throw "Vector's size must be even";
+    if (vec_size <= 0) throw std::runtime_error("Size must be > 0.");
+    if (vec_size %2 != 0) throw std::runtime_error("Size must be even");
     std::random_device rand_d;
     std::mt19937 gen(rand_d());
     std::vector<double> res_vec(vec_size);
