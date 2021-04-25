@@ -15,13 +15,13 @@ TEST(Batcher_Merge_Sort_Test, Test_Creating_Odd_Vector_Exception) {
 }
 
 TEST(Batcher_Merge_Sort_Test, Test_Correct_Creating_Vector) {
-    int n = 10;
+    size_t n = 10;
     std::vector<double> vec(n);
     ASSERT_NO_THROW(vec = MergeSort::createRandomVector(n));
 }
 
 TEST(Batcher_Merge_Sort_Test, Test_Correct_Sorting_Small_Vector) {
-    int n = 16;
+    size_t n = 16;
     std::vector<double> vec = MergeSort::createRandomVector(n);
     std::vector<double> vec_copy = vec;
     MergeSort::OddEvenMergeSort(&vec, 0, n - 1);
@@ -30,7 +30,7 @@ TEST(Batcher_Merge_Sort_Test, Test_Correct_Sorting_Small_Vector) {
 }
 
 TEST(Batcher_Merge_Sort_Test, Test_Correct_Sorting_Medium_Vector) {
-    int n = 256;
+    size_t n = 256;
     std::vector<double> vec = MergeSort::createRandomVector(n);
     std::vector<double> vec_copy = vec;
     MergeSort::OddEvenMergeSort(&vec, 0, n - 1);
@@ -39,9 +39,9 @@ TEST(Batcher_Merge_Sort_Test, Test_Correct_Sorting_Medium_Vector) {
 }
 
 TEST(Batcher_Merge_Sort_Test, Test_Correct_Sorting_Sorted_Vec) {
-    int n = 32;
+    size_t n = 32;
     std::vector<double> vec(n);
-    for (int i = 0; i < n; i++) {
+    for (size_t i = 0; i < n; i++) {
         vec[i] = i;
     }
     std::vector<double> vec_copy = vec;
@@ -51,9 +51,9 @@ TEST(Batcher_Merge_Sort_Test, Test_Correct_Sorting_Sorted_Vec) {
 }
 
 TEST(Batcher_Merge_Sort_Test, Test_Sorting_Reverse_Sorted_Vec) {
-    int n = 128;
+    size_t n = 128;
     std::vector<double> vec(n);
-    for (int i = 0; i < n; i++) {
+    for (size_t i = 0; i < n; i++) {
         vec[i] = n - i;
     }
     std::vector<double> vec_copy = vec;
@@ -63,9 +63,9 @@ TEST(Batcher_Merge_Sort_Test, Test_Sorting_Reverse_Sorted_Vec) {
 }
 
 TEST(Batcher_Merge_Sort_Test, Test_Correct_Sorting_Equal_Elements) {
-    int n = 64;
+    size_t n = 64;
     std::vector<double> vec(n);
-    for (int i = 0; i < n; i++) {
+    for (size_t i = 0; i < n; i++) {
         vec[i] = 1;
     }
     std::vector<double> vec_copy = vec;
