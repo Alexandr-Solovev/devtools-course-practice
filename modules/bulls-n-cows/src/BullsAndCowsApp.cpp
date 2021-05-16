@@ -1,14 +1,12 @@
 // Copyright 2021 Solovev Aleksandr
-
-#include "include/BullsAndCowsApp.h"
-
-#include <stdexcept>
-#include <sstream>
-#include <string>
-#include <vector>
 #include <algorithm>
 #include <iostream>
+#include <sstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
+#include "include/BullsAndCowsApp.h"
 #include "include/BullsAndCows.h"
 
 std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
@@ -16,7 +14,7 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
     if (retcode)
         *retcode = 1;
     if (argc != 3)
-        return "invalid argument.";
+        return "invalid count of arguments, should be 2";
     std::string arg = argv[1];
     srand( time(0) );
     int count;
@@ -32,14 +30,14 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
                    std::string(e.what());
         }
     if(count <= 0)
-        return "invalid argument.";
+        return "invalid argument of count should be (0-9)";
     arg = argv[2];
     std::vector<int> guess(count);
     try
     {
         for (int i = 0; i < count - 1; i++)
         {
-            guess[i] = arg[i]- '0';
+            guess[i] = arg[i] - '0';
         }
         
         reedem_answer = std::stoi(arg);
@@ -67,7 +65,13 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
         game.setGuess(guess);
         game.guessing();
         std::pair<int, int> result = game.getAnimals();
-        str = "Bulls:" + std::to_string(result.first) + " Cows:" + std::to_string(result.second);  
+        str = "Bulls:" + std::to_string(result.first) + " Cows:" + std::to_string(result.second);
+        std::cout<<"Answer:";
+        for (size_t i = 0; i < count; i++)
+        {
+           std::cout << answer[i];
+        }
+        
     } catch (std::runtime_error& e) {
         return "[ERROR]" + std::string(e.what());
     }
@@ -78,6 +82,8 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
 }
 
 std::string BullsAndCowsApp::help(const std::string& filename) const {
-    return "Usage: " + filename + " COUNT ANSWER\nExample: " + filename +
-           "3 123";
+        return "Usage: " + filename +
+            " Count of numbers Answer...\n" \
+            "Example: " + filename +
+            " 3 123";
 }

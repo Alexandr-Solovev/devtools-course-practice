@@ -25,15 +25,7 @@ add_test(
     COMMAND ${APPLICATION} 1 2 3
 )
 set_tests_properties (${prefix}_can_check_number_of_arguments PROPERTIES
-    PASS_REGULAR_EXPRESSION "invalid argument."
-    LABELS "${MODULE}")
-
-add_test(
-    NAME ${prefix}_can_detect_wrong_count_iteration
-    COMMAND ${APPLICATION} -1 4
-)
-set_tests_properties (${prefix}_can_detect_wrong_count_iteration PROPERTIES
-    PASS_REGULAR_EXPRESSION "invalid argument."
+    PASS_REGULAR_EXPRESSION "invalid count of arguments, should be 2"
     LABELS "${MODULE}")
 
 add_test(
