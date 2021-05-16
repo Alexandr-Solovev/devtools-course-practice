@@ -11,16 +11,6 @@
 #include "include/BullsAndCowsApp.h"
 #include "include/BullsAndCows.h"
 
-int generateRandomNumber() {
-    std::mt19937 gen;
-    int min = 0;
-    int max = 9;
-    int result;
-    gen.seed(static_cast<unsigned int>(time(0)));
-    result = static_cast<int>(gen()) % (max - min + 1) + min;
-    return abs(result);
-}
-
 std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
                                int* retcode) const {
     if (retcode)
@@ -42,39 +32,31 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
         return "invalid argument of count should be (0-9)";
     arg = argv[2];
     std::vector<int> guess(count);
-    try {
-        for (int i = 0; i < count - 1; i++) {
-            guess[i] = arg[i] - '0';
-        }
-    } catch (std::invalid_argument& e) {
-            return "[ERROR] " + arg + ": invalid argument. " +
-                   std::string(e.what());
-        } catch (std::out_of_range& e) {
-            return "[ERROR] " + arg + ": out of range. " +
-                   std::string(e.what());
-        }
+    for (int i = 0; i < count - 1; i++) {
+        guess[i] = static_cast<int>(arg[i]);
+    }
     int x;
     std::vector<int> answer(count);
+    std::mt19937 gen;
+    int min = 0;
+    int max = 9;
+    gen.seed(static_cast<unsigned int>(time(0)));
     for (int i = 0; i < count; i++) {
         do {
-            x = generateRandomNumber();
+            x = abs(static_cast<int>(gen()) % (max - min + 1) + min);
         } while (std::find(answer.begin(), answer.end(), x) != answer.end());
         answer[i] = x;
     }
     std::string str;
-    try {
-        bullsAndCowsGame game(answer);
-        game.setGuess(guess);
-        game.guessing();
-        std::pair<int, int> result = game.getAnimals();
-        str = "Bulls:" + std::to_string(result.first) +
-              " Cows:" + std::to_string(result.second);
-        std::cout << "Answer:";
-        for (size_t i = 0; i < count; i++) {
-           std::cout << answer[i];
-        }
-    } catch (std::runtime_error& e) {
-        return "[ERROR]" + std::string(e.what());
+    bullsAndCowsGame game(answer);
+    game.setGuess(guess);
+    game.guessing();
+    std::pair<int, int> result = game.getAnimals();
+    str = "Bulls:" + std::to_string(result.first) +
+          " Cows:" + std::to_string(result.second);
+    std::cout << "Answer:";
+    for (size_t i = 0; i < count; i++) {
+        std::cout << answer[i];
     }
     if (retcode)
         *retcode = 0;

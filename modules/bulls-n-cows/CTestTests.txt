@@ -29,6 +29,22 @@ set_tests_properties (${prefix}_can_check_number_of_arguments PROPERTIES
     LABELS "${MODULE}")
 
 add_test(
+    NAME ${prefix}_cannot_parse_argument_with_bad_symbols
+    COMMAND ${APPLICATION} a 1
+)
+set_tests_properties (${prefix}_cannot_parse_argument_with_bad_symbols PROPERTIES
+    PASS_REGULAR_EXPRESSION "invalid argument"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cannot_parse_argument_with_out_of_range
+    COMMAND ${APPLICATION} 1231234124124124312312 1
+)
+set_tests_properties (${prefix}_cannot_parse_argument_with_out_of_range PROPERTIES
+    PASS_REGULAR_EXPRESSION "out of range"
+    LABELS "${MODULE}")
+
+add_test(
     NAME ${prefix}_can_with_valid_arguments_1
     COMMAND ${APPLICATION} 3 123
 )
