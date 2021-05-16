@@ -5,7 +5,6 @@
 
 #include <string>
 
-int generateRandomNumber();
 class BullsAndCowsApp {
  public:
     BullsAndCowsApp() = default;
