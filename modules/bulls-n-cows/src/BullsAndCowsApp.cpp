@@ -16,11 +16,9 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
     if (argc != 3)
         return "invalid count of arguments, should be 2";
     std::string arg = argv[1];
-    srand( time(0) );
+    srand(time(0));
     int count;
-    int reedem_answer;
-    try
-    {
+    try {
         count = std::stoi(arg);
     } catch (std::invalid_argument& e) {
             return "[ERROR] " + arg + ": invalid argument. " +
@@ -39,8 +37,6 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
         {
             guess[i] = arg[i] - '0';
         }
-        
-        reedem_answer = std::stoi(arg);
     } catch (std::invalid_argument& e) {
             return "[ERROR] " + arg + ": invalid argument. " +
                    std::string(e.what());
@@ -65,7 +61,8 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
         game.setGuess(guess);
         game.guessing();
         std::pair<int, int> result = game.getAnimals();
-        str = "Bulls:" + std::to_string(result.first) + " Cows:" + std::to_string(result.second);
+        str = "Bulls:" + std::to_string(result.first) +
+              " Cows:" + std::to_string(result.second);
         std::cout<<"Answer:";
         for (size_t i = 0; i < count; i++)
         {
