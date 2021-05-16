@@ -16,7 +16,7 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
     if (retcode)
         *retcode = 1;
     if (argc != 3)
-        return "[ERROR] Should be 2 arguments.";
+        return "invalid argument.";
     std::string arg = argv[1];
     srand( time(0) );
     int count;
@@ -37,7 +37,7 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
     std::vector<int> guess(count);
     try
     {
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count - 1; i++)
         {
             guess[i] = arg[i]- '0';
         }
