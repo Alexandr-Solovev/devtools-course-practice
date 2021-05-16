@@ -28,8 +28,6 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
             return "[ERROR] " + arg + ": out of range. " +
                    std::string(e.what());
         }
-    if (count <= 0)
-        return "invalid argument of count should be (0-9)";
     arg = argv[2];
     std::vector<int> guess(count);
     for (int i = 0; i < count - 1; i++) {
