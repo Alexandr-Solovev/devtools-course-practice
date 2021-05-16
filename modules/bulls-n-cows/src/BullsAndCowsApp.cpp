@@ -18,6 +18,7 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
     if (argc != 3)
         return help(argv[0]);
     std::string arg = argv[1];
+    srand( time(0) );
     int count;
     int reedem_answer;
     try
@@ -76,5 +77,5 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
 
 std::string BullsAndCowsApp::help(const std::string& filename) const {
     return "Usage: " + filename + " COUNT ANSWER\nExample: " + filename +
-           "123456789";
+           "3 123";
 }

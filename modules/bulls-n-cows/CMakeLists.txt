@@ -1,4 +1,3 @@
-  
 # Declare variables for binaries' names
 get_filename_component(DIR_NAME ${CMAKE_CURRENT_LIST_DIR} NAME)
 set(MODULE      "${DIR_NAME}")
@@ -14,4 +13,8 @@ add_subdirectory(src)
 add_subdirectory(test)
 add_subdirectory(application)
 
-#include("CTestTests.txt")
+#############################################
+##### Testing
+#############################################
+
+include("CTestTests.txt")

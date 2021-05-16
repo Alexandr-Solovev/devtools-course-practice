@@ -9,7 +9,6 @@ add_test(
     COMMAND ${APPLICATION}
 )
 set_tests_properties (${prefix}_can_run PROPERTIES
-    PASS_REGULAR_EXPRESSION ".*"
     LABELS "${MODULE}")
 
 add_test(
@@ -21,33 +20,49 @@ set_tests_properties (${prefix}_can_print_help_without_arguments PROPERTIES
     LABELS "${MODULE}")
 
 add_test(
-    NAME ${prefix}_cannot_sort_less_than_two_nums
-    COMMAND ${APPLICATION} 1
+    NAME ${prefix}_can_check_number_of_arguments
+    COMMAND ${APPLICATION} 1 2 3
 )
-set_tests_properties (${prefix}_cannot_sort_less_than_two_nums PROPERTIES
-    PASS_REGULAR_EXPRESSION "Unable to sort"
+set_tests_properties (${prefix}_can_check_number_of_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 2 arguments."
     LABELS "${MODULE}")
 
 add_test(
-    NAME ${prefix}_cannot_parse_argument_with_bad_symbols
-    COMMAND ${APPLICATION} 1.5 zzz
+    NAME ${prefix}_can_detect_wrong_count_iteration
+    COMMAND ${APPLICATION} -1 4
 )
-set_tests_properties (${prefix}_cannot_parse_argument_with_bad_symbols PROPERTIES
-    PASS_REGULAR_EXPRESSION "invalid argument"
+set_tests_properties (${prefix}_can_detect_wrong_count_iteration PROPERTIES
+    PASS_REGULAR_EXPRESSION "invalid argument."
     LABELS "${MODULE}")
 
 add_test(
-    NAME ${prefix}_cannot_parse_argument_with_out_of_range
-    COMMAND ${APPLICATION} 1.5 2e400
+    NAME ${prefix}_can_with_valid_arguments_and_default_answer_1
+    COMMAND ${APPLICATION} 3 123
 )
-set_tests_properties (${prefix}_cannot_parse_argument_with_out_of_range PROPERTIES
-    PASS_REGULAR_EXPRESSION "out of range"
+set_tests_properties (${prefix}_can_with_valid_arguments_and_default_answer_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Bulls: 3 Cows: 0"
     LABELS "${MODULE}")
 
 add_test(
-    NAME ${prefix}_can_sort
-    COMMAND ${APPLICATION} 6 -4.3 47 1.1 2 -5 -3.87
+    NAME ${prefix}_can_with_valid_arguments_and_default_answer_2
+    COMMAND ${APPLICATION} 5 12345
 )
-set_tests_properties (${prefix}_can_sort PROPERTIES
-    PASS_REGULAR_EXPRESSION "-5\\.?0* -4\\.30* -3\\.870* 1\\.10* 2\\.?0* 6\\.?0* 47\\.?0*"
+set_tests_properties (${prefix}_can_with_valid_arguments_and_default_answer_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Bulls: 5 Cows: 0"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_with_valid_arguments_and_default_answer_3
+    COMMAND ${APPLICATION} 5 54321
+)
+set_tests_properties (${prefix}_can_with_valid_arguments_and_default_answer_3 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Bulls: 0 Cows: 5"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_with_valid_arguments_and_default_answer_4
+    COMMAND ${APPLICATION} 6 123654
+)
+set_tests_properties (${prefix}_can_with_valid_arguments_and_default_answer_4 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Bulls: 3 Cows: 3"
     LABELS "${MODULE}")
