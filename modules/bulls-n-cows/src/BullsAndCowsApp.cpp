@@ -16,7 +16,7 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
     if (retcode)
         *retcode = 1;
     if (argc != 3)
-        return help(argv[0]);
+        return "[ERROR] Should be 2 arguments.";
     std::string arg = argv[1];
     srand( time(0) );
     int count;
@@ -31,6 +31,8 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
             return "[ERROR] " + arg + ": out of range. " +
                    std::string(e.what());
         }
+    if(count <= 0)
+        return "invalid argument.";
     arg = argv[2];
     std::vector<int> guess(count);
     try
