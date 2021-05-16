@@ -76,7 +76,6 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
     } catch (std::runtime_error& e) {
         return "[ERROR]" + std::string(e.what());
     }
-    
     if (retcode)
         *retcode = 0;
     return str;
