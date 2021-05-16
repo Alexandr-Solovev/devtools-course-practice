@@ -55,7 +55,7 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
     str = "Bulls:" + std::to_string(result.first) +
           " Cows:" + std::to_string(result.second);
     std::cout << "Answer:";
-    for (size_t i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++) {
         std::cout << answer[i];
     }
     if (retcode)
