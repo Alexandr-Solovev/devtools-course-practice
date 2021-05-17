@@ -15,6 +15,8 @@ std::string BullsAndCowsApp::operator()(int argc, const char* argv[],
                                int* retcode) const {
     if (retcode)
         *retcode = 1;
+    if (argc <= 1)
+        return help(argv[0]);
     std::string arg = argv[1];
     int count;
     try {
