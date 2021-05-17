@@ -25,7 +25,7 @@ add_test(
     COMMAND ${APPLICATION} a 1
 )
 set_tests_properties (${prefix}_cannot_parse_argument_with_bad_symbols PROPERTIES
-    PASS_REGULAR_EXPRESSION "invalid argument. invalid stoi argument"
+    PASS_REGULAR_EXPRESSION "invalid argument"
     LABELS "${MODULE}")
 
 add_test(
@@ -33,7 +33,7 @@ add_test(
     COMMAND ${APPLICATION} 1231234124124124312312 1
 )
 set_tests_properties (${prefix}_cannot_parse_argument_with_out_of_range PROPERTIES
-    PASS_REGULAR_EXPRESSION "out of range. stoi argument out of range"
+    PASS_REGULAR_EXPRESSION "out of range"
     LABELS "${MODULE}")
 
 add_test(
